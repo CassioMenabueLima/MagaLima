@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import br.com.magalima.R;
 import br.com.magalima.adapter.MotosAdapter;
+import br.com.magalima.db.DaoOrder;
 import br.com.magalima.domain.Login;
 import br.com.magalima.presenter.LoginIPresenter;
 import br.com.magalima.presenter.LoginPresenter;
@@ -70,7 +71,8 @@ public class LoginActivity extends AppCompatActivity implements LoginIActivity.L
     @Override
     public void nextActivity(Login login) {
 
-
+        DaoOrder daoOrder = new DaoOrder(getBaseContext());
+       // daoOrder.clearAllOrder();
         Intent it = new Intent(this, ProductActivity.class);
         //it.putExtra("id", login.getId());
         it.putExtra("login", login);

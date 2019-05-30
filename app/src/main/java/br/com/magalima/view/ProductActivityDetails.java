@@ -79,6 +79,7 @@ public class ProductActivityDetails extends Dialog implements
                 lstProd.add(product);
                 order.setProducts(lstProd);
                 daoOrder.insertOrder(order);
+                lstOrder= daoOrder.getOrders(login.getId());
                 productActivity.showToast("Produto adicionado no carinho ");
                 dismiss();
                 break;

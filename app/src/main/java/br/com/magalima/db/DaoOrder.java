@@ -107,7 +107,7 @@ public class DaoOrder extends Dao {
 
     }
 
-    public ArrayList<Order> getOrders(String idOrder) {
+    public ArrayList<Order> getOrders(String idUser) {
         ArrayList<Order> dados = new ArrayList<>();
         //
         openDB();
@@ -119,9 +119,9 @@ public class DaoOrder extends Dao {
             //sb.append(" select * from order_header order by id ");
 
             sb.append(" select * from order_header where ")
-                    .append("id")
+                    .append("id_user")
                     .append(" = ? ");
-            String[] argumentos = {idOrder};
+            String[] argumentos = {idUser};
             cursor = db.rawQuery(sb.toString().toLowerCase(), argumentos);
             int i = 0;
             while (cursor.moveToNext()) {
@@ -144,6 +144,7 @@ public class DaoOrder extends Dao {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -194,5 +195,17 @@ public class DaoOrder extends Dao {
         closeDB();
         //
         return dados;
+    }
+    public void clearAllOrder() {
+        openDB();
+        //
+
+        String where =   " 1= 1";
+        // String[] argumentos = {chave};
+        //
+        db.delete("order_header", where, null);
+        db.delete("order_itens", where, null);
+        closeDB();
+
     }
 }
