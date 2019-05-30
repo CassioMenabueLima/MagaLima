@@ -59,7 +59,7 @@ public class ProductPresenter implements ProductIPresenter.ProductPresenterImpl 
 
     @Override
     public Context getContext() {
-        return null;
+        return (Context) view;
     }
 
 

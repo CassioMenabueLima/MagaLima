@@ -2,16 +2,20 @@ package br.com.magalima.model;
 
 import com.loopj.android.http.AsyncHttpClient;
 
+import br.com.magalima.db.DaoOrder;
 import br.com.magalima.domain.Moto;
+import br.com.magalima.domain.Product;
 import br.com.magalima.presenter.OrderIPresenter;
 
 
-public class OrderModel implements OrderIModel.CarModelImpl {
+public class OrderModel implements OrderIModel.OrderModelImpl {
     private AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-    private OrderIPresenter.CarPresenterImpl presenter;
+    private OrderIPresenter.OrderPresenterImpl presenter;
+    private DaoOrder daoOrder;
 
-    public OrderModel(OrderIPresenter.CarPresenterImpl presenter ){
+    public OrderModel(OrderIPresenter.OrderPresenterImpl presenter) {
         this.presenter = presenter;
+        this.daoOrder = new DaoOrder(presenter.getContext());
     }
 
     @Override
@@ -34,5 +38,26 @@ public class OrderModel implements OrderIModel.CarModelImpl {
                 JsonHttpRequest.URI,
                 requestParams,
                 new JsonHttpRequest( presenter ));*/
+    }
+
+    @Override
+    public void addProductToOrder(Product product) {
+
+    }
+
+    @Override
+    public void removeProductToOrder(Product product) {
+
+    }
+
+    @Override
+    public void alterProductToOrder(Product product) {
+
+    }
+
+    @Override
+    public void getProducts() {
+        String id = (presenter.getIdUser());
+        presenter.updateListaRecycler(daoOrder.getOrders(id));
     }
 }

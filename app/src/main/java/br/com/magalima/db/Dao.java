@@ -3,11 +3,9 @@ package br.com.magalima.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import br.com.magalima.util.Constantes;
 
 
-/**
- * Created by nalmir on 18/03/2017.
- */
 public class Dao {
 
     private Context context;
@@ -18,7 +16,7 @@ public class Dao {
     }
 
     //
-  /*  public void abrirBanco(StringBuilder sb) {
+ public void openDB(StringBuilder sb) {
         DataBaseHelper baseHelper = new DataBaseHelper(
                 context,
                 Constantes.BANCODEDADOS,
@@ -29,7 +27,7 @@ public class Dao {
         this.db = baseHelper.getWritableDatabase();
 
     }
-    public void abrirBanco() {
+    public void openDB() {
         StringBuilder sb = new StringBuilder();
         DataBaseHelper baseHelper = new DataBaseHelper(
                 context,
@@ -43,9 +41,9 @@ public class Dao {
     }
 
     // Ensinei ele a fechar o banco de dados
-    public void fecharBanco() {
+    public void closeDB() {
         if (db != null) {
             db.close();
         }
-    }*/
+    }
 }

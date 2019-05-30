@@ -3,6 +3,8 @@ package br.com.magalima.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 import br.com.magalima.R;
 
 
@@ -11,9 +13,8 @@ public class Order implements Parcelable {
     public static final String EH_FAVORITO_KEY = "eh-favorito";
 
     private int id;
-    private String modelo;
-    private String marca;
-    private String imagem;
+    private Login login;
+    private ArrayList<Product> products;
     private boolean ehFavorito;
 
     public int getId() {
@@ -24,28 +25,20 @@ public class Order implements Parcelable {
         this.id = id;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Login getLogin() {
+        return login;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
-    public String getMarca() {
-        return marca;
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
     }
 
     public boolean isEhFavorito() {
@@ -72,9 +65,8 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeString(this.modelo);
-        dest.writeString(this.marca);
-        dest.writeString(this.imagem);
+        dest.writeValue(this.login);
+        dest.writeList(this.products);
         dest.writeByte(this.ehFavorito ? (byte) 1 : (byte) 0);
     }
 
@@ -83,9 +75,8 @@ public class Order implements Parcelable {
 
     protected Order(Parcel in) {
         this.id = in.readInt();
-        this.modelo = in.readString();
-        this.marca = in.readString();
-        this.imagem = in.readString();
+        this.login = (Login) in.readValue(Login.class.getClassLoader());
+        this.products = in.readArrayList(Product.class.getClassLoader());
         this.ehFavorito = in.readByte() != 0;
     }
 

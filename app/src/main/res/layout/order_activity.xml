@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_linear"
     android:fitsSystemWindows="true"
-    tools:context="br.com.magalima.MainActivity">
+    tools:context="br.com.magalima.view.OrderActivity">
 
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_produtos"
+        android:id="@+id/rv_order"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
