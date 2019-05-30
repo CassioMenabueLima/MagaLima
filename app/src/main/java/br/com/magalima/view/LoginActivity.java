@@ -72,8 +72,10 @@ public class LoginActivity extends AppCompatActivity implements LoginIActivity.L
 
 
         Intent it = new Intent(this, ProductActivity.class);
-        it.putExtra("id", login.getId());
+        //it.putExtra("id", login.getId());
+        it.putExtra("login", login);
         startActivity(it);
+
         finish();
 
     }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="@color/colorAccent"
     android:padding="2dp">
 
     <ImageView
@@ -43,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bg"
+            android:textColor="@color/colorText"
             android:text="Mais detalhes" />
 
         <ImageView

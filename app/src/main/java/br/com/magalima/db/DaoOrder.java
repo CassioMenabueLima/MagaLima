@@ -22,19 +22,18 @@ public class DaoOrder extends Dao {
 
     public void insertOrder(Order order) {
         openDB();
-        ;
-        //
-        ContentValues cv = new ContentValues();
+          ContentValues cv = new ContentValues();
         // cv.put("id", null);
         cv.put("id_user", order.getLogin().getId());
         cv.put("name", order.getLogin().getName());
         cv.put("email", order.getLogin().getEmail());
-        closeDB();
-        //
         db.insert("order_header", null, cv);
-        //Insert Iten in order
-        int idOrder =getIdCurrentOrder();
-        insertOrderItens(order.getProducts(), idOrder);
+        closeDB();
+        if(order.getProducts() != null){
+            //Insert Iten in order
+            int idOrder =getIdCurrentOrder();
+            insertOrderItens(order.getProducts(), idOrder);
+        }
         //
 
     }

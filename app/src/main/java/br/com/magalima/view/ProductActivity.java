@@ -8,13 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
+
 import br.com.magalima.R;
 import br.com.magalima.adapter.ProductAdapter;
+import br.com.magalima.domain.Login;
 import br.com.magalima.domain.Product;
 import br.com.magalima.presenter.ProductIPresenter;
 import br.com.magalima.presenter.ProductPresenter;
-
-
 
 
 public class ProductActivity extends AppCompatActivity implements ProductIActivity.ProductViewImpl {
@@ -22,15 +22,14 @@ public class ProductActivity extends AppCompatActivity implements ProductIActivi
 
     private ProductAdapter adapter;
     private static ProductIPresenter.ProductPresenterImpl presenter;
-    private String ID;
+    private Login login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_activity);
         Intent it = getIntent();
-        ID = it.getStringExtra("id");
-
+        login = (Login) it.getParcelableExtra("login");
 
         if (presenter == null) {
             presenter = new ProductPresenter();
@@ -90,12 +89,9 @@ public class ProductActivity extends AppCompatActivity implements ProductIActivi
     }
 
     @Override
-    public void nextActivity( Product product) {
-        Intent it = new Intent(this, ProductActivityDetails.class);
-        /*it.putExtra("id", ID);
-        it.putExtra("produto", product);
-        startActivity(it);*/
-        ProductActivityDetails productActivityDetails = new ProductActivityDetails(ProductActivity.this,ID,product);
+    public void nextActivity(Product product) {
+
+        ProductActivityDetails productActivityDetails = new ProductActivityDetails(ProductActivity.this, login, product);
         productActivityDetails.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         productActivityDetails.show();
     }

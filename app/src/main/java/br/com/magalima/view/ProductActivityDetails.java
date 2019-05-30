@@ -7,29 +7,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import br.com.magalima.R;
+import br.com.magalima.db.DaoOrder;
+import br.com.magalima.domain.Login;
+import br.com.magalima.domain.Order;
 import br.com.magalima.domain.Product;
 
 public class ProductActivityDetails extends Dialog implements
         android.view.View.OnClickListener {
 
 
-
     private Activity c;
     private Dialog d;
     private Button yes, no;
     private TextView tv_informacoes;
-    private String id;
+    private TextView tv_price;
+    private TextView tv_total;
+    private EditText ed_quantity;
+    private Login login;
     private Product product;
+    private DaoOrder daoOrder;
 
-    public ProductActivityDetails(Activity a,String id, Product product) {
+    public ProductActivityDetails(Activity a, Login login, Product product) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;
-        this.id =id;
-        this.product=product;
+        this.login = login;
+        this.product = product;
+        this.daoOrder = new DaoOrder(c.getBaseContext());
     }
 
     @Override
@@ -37,12 +47,16 @@ public class ProductActivityDetails extends Dialog implements
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.product_details);
-        yes =  findViewById(R.id.btn_yes);
+        yes = findViewById(R.id.btn_yes);
         no = findViewById(R.id.btn_no);
-        tv_informacoes= findViewById(R.id.tv_informacoes);
+        tv_informacoes = findViewById(R.id.tv_informacoes);
+        ed_quantity = findViewById(R.id.ed_quantity);
+        tv_price = findViewById(R.id.tv_price);
+        tv_total = findViewById(R.id.tv_total);
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
-
+        tv_price.setText(String.valueOf(product.getValor()));
+        tv_total.setText(String.valueOf(product.getValor()*product.getQuantity()));
         tv_informacoes.setText(product.getInformacoes());
 
     }
@@ -52,6 +66,19 @@ public class ProductActivityDetails extends Dialog implements
         switch (v.getId()) {
             case R.id.btn_yes:
                 ProductActivity productActivity = (ProductActivity) c;
+                ArrayList<Order> lstOrder= new ArrayList<>();
+                lstOrder=daoOrder.getOrders(login.getId());
+                Order order = new Order();
+                order.setLogin(login);
+                ArrayList<Product> lstProd = new ArrayList<>();
+                double qtd=Double.valueOf(ed_quantity.getText().toString());
+                double price=Double.valueOf(tv_price.getText().toString());
+                double total=qtd*price;
+                product.setQuantity(qtd);
+                product.setTotal(total);
+                lstProd.add(product);
+                order.setProducts(lstProd);
+                daoOrder.insertOrder(order);
                 productActivity.showToast("Produto adicionado no carinho ");
                 dismiss();
                 break;

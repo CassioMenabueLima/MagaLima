@@ -2,6 +2,8 @@ package br.com.magalima.model;
 
 import com.loopj.android.http.AsyncHttpClient;
 
+import java.util.ArrayList;
+
 import br.com.magalima.db.DaoOrder;
 import br.com.magalima.domain.Moto;
 import br.com.magalima.domain.Product;
@@ -42,7 +44,10 @@ public class OrderModel implements OrderIModel.OrderModelImpl {
 
     @Override
     public void addProductToOrder(Product product) {
-
+        ArrayList<Product> lstProd  = new ArrayList<>();
+        lstProd.add(product);
+        int idOrder=daoOrder.getIdCurrentOrder();
+        daoOrder.insertOrderItens(lstProd,idOrder);
     }
 
     @Override

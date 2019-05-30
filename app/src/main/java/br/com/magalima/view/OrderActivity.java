@@ -55,7 +55,7 @@ public class OrderActivity extends AppCompatActivity implements OrderIActivity.O
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(KEY, presenter.getOrder(ID_USER));
+        outState.putParcelableArrayList(KEY, presenter.getOrder());
         super.onSaveInstanceState(outState);
     }
 

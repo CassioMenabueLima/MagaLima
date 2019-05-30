@@ -71,7 +71,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     .load( product.getInformacoes() )
                     .into(iv_product);*/
             tv_nome.setText( product.getDescricao() );
-            tv_valor.setText( product.getValor() );
+            tv_valor.setText(String.valueOf(product.getValor()) );
             iv_favourite.setImageResource( product.getEhFavoritoIcone() );
             btn_details.setOnClickListener(new View.OnClickListener() {
                 @Override
