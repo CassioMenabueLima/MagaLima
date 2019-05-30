@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/iv_product"
+        android:layout_width="75dp"
+        android:layout_height="78dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_product_exemple" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:text="produto"
+
+            android:textColor="@color/colorText" />
+
+        <TextView
+            android:id="@+id/tv_valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:text="valor"
+
+            android:textColor="@color/colorText" />
+
+        <Button
+            android:id="@+id/btn_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:text="Mais detalhes" />
+
+        <ImageView
+            android:id="@+id/iv_favorito"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/ic_favorito" />
+
+    </LinearLayout>
+
+</LinearLayout>
