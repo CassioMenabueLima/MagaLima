@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -56,9 +58,28 @@ public class ProductActivityDetails extends Dialog implements
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
         tv_price.setText(String.valueOf(product.getValor()));
-        tv_total.setText(String.valueOf(product.getValor()*product.getQuantity()));
+        tv_total.setText(String.valueOf(product.getValor() * product.getQuantity()));
         tv_informacoes.setText(product.getInformacoes());
+        ed_quantity.addTextChangedListener(new TextWatcher() {
 
+            public void afterTextChanged(Editable s) {
+                double  quantidade =0;
+               if (s.length()>0){
+                   quantidade = Double.parseDouble(ed_quantity.getText().toString());
+                }
+
+                double price = Double.parseDouble(tv_price.getText().toString());
+                double total = quantidade * price;
+                tv_total.setText(String.valueOf(total));
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
     }
 
     @Override
@@ -66,14 +87,14 @@ public class ProductActivityDetails extends Dialog implements
         switch (v.getId()) {
             case R.id.btn_yes:
                 ProductActivity productActivity = (ProductActivity) c;
-                ArrayList<Order> lstOrder= new ArrayList<>();
-                lstOrder=daoOrder.getOrders(login.getId());
+                ArrayList<Order> lstOrder = new ArrayList<>();
+                lstOrder = daoOrder.getOrders(login.getId());
                 Order order = new Order();
                 order.setLogin(login);
                 ArrayList<Product> lstProd = new ArrayList<>();
-                double qtd=Double.valueOf(ed_quantity.getText().toString());
-                double price=Double.valueOf(tv_price.getText().toString());
-                double total=qtd*price;
+                double qtd = Double.valueOf(ed_quantity.getText().toString());
+                double price = Double.valueOf(tv_price.getText().toString());
+                double total = qtd * price;
                 product.setQuantity(qtd);
                 product.setTotal(total);
                 lstProd.add(product);

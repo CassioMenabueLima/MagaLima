@@ -15,6 +15,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_gravity="right"
+    android:background="@drawable/button_bg"
     android:text="Comanda"/>
 
     <android.support.v7.widget.RecyclerView
