@@ -9,7 +9,7 @@ import br.com.magalima.R;
 public class Login implements Parcelable {
     public static final String ID_USERNAME = "username";
     public static final String ID_PASSWORD = "password";
-    public static final String ID_METODO = "usuarios";
+    public static final String ID_METODO = "usuarios.php";
     private String id;
     private String userName;
     private String email;

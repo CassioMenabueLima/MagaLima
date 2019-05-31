@@ -11,19 +11,20 @@ import java.util.ArrayList;
 
 import br.com.magalima.domain.Order;
 import br.com.magalima.domain.Product;
+import br.com.magalima.presenter.OrderIPresenter;
 import br.com.magalima.presenter.ProductIPresenter;
 import br.com.magalima.util.Constantes;
 import cz.msebera.android.httpclient.Header;
 
 
-public class JsonHttpRequestProduct extends JsonHttpResponseHandler {
-    public static final String URI_PRODUTO = Constantes.IP_API+Product.ID_METODO;
+public class JsonHttpRequestOrder extends JsonHttpResponseHandler {
+      public static final String URI_COMANDA = Constantes.IP_API+Order.ID_METODO;
+    public static final String URI_ITEM = Constantes.IP_API+ Order.ID_ITEM_METODO;
+
+    private OrderIPresenter.OrderPresenterImpl presenter;
 
 
-    private ProductIPresenter.ProductPresenterImpl presenter;
-
-
-    public JsonHttpRequestProduct(ProductIPresenter.ProductPresenterImpl presenter ){
+    public JsonHttpRequestOrder(OrderIPresenter.OrderPresenterImpl presenter ){
         this.presenter = presenter;
     }
 

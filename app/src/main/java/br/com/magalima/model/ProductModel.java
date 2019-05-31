@@ -3,6 +3,8 @@ package br.com.magalima.model;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 
+import br.com.magalima.domain.Order;
+import br.com.magalima.domain.Product;
 import br.com.magalima.network.JsonHttpRequestProduct;
 import br.com.magalima.presenter.ProductIPresenter;
 
@@ -17,9 +19,9 @@ public class ProductModel implements ProductIModel.ProductModelImpl {
 
     @Override
     public void retrieveProduct() {
-        RequestParams requestParams = new RequestParams(JsonHttpRequestProduct.METODO_KEY, "get-products");
-        asyncHttpClient.post( presenter.getContext(),
-                JsonHttpRequestProduct.URI,
+        RequestParams requestParams = new RequestParams(Product.ID_METODO, "get");
+        asyncHttpClient.get( presenter.getContext(),
+                JsonHttpRequestProduct.URI_PRODUTO,
                 requestParams,
                 new JsonHttpRequestProduct( presenter ));
     }

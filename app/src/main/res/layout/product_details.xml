@@ -5,6 +5,13 @@
     android:background="@drawable/layout_bg_dialog"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="25dp"
+        android:text="Informe a quantide desse produto qu deseja adcionar na comanda" />
+
     <EditText
         android:id="@+id/ed_quantity"
         android:layout_width="match_parent"
@@ -17,6 +24,12 @@
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="25dp"
+        android:text="Preco unitario" />
 
     <TextView
         android:id="@+id/tv_price"
@@ -28,6 +41,12 @@
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="25dp"
+        android:text="Valor Total do Item" />
 
     <TextView
         android:id="@+id/tv_total"
@@ -58,11 +77,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="160dp"
 
         android:orientation="horizontal">
 
         <LinearLayout
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

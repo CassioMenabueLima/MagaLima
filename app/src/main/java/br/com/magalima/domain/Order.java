@@ -9,12 +9,13 @@ import java.util.ArrayList;
 
 public class Order implements Parcelable {
     public static final String ID_KEY = "id";
-
+    public static final String ID_METODO = "comanda";
+    public static final String ID_ITEM_METODO = "itemcomanda";
 
     private int id;
     private Login login;
     private ArrayList<Product> products;
-    private boolean ehFavorito;
+
 
     public int getId() {
         return id;
@@ -54,7 +55,7 @@ public class Order implements Parcelable {
         dest.writeInt(this.id);
         dest.writeValue(this.login);
         dest.writeList(this.products);
-        dest.writeByte(this.ehFavorito ? (byte) 1 : (byte) 0);
+
     }
 
     public Order() {
@@ -64,7 +65,7 @@ public class Order implements Parcelable {
         this.id = in.readInt();
         this.login = (Login) in.readValue(Login.class.getClassLoader());
         this.products = in.readArrayList(Product.class.getClassLoader());
-        this.ehFavorito = in.readByte() != 0;
+
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 
 
 public class Product implements Parcelable {
-    public static final String ID_METODO = "products";
+    public static final String ID_METODO = "produtos.php";
 
     private String id;
     private String descricao;

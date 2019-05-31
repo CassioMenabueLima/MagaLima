@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import br.com.magalima.R;
@@ -22,6 +24,7 @@ public class OrderActivity extends AppCompatActivity implements OrderIActivity.O
     private static OrderIPresenter.OrderPresenterImpl presenter;
     private String ID_USER;
     private RecyclerView rvOrder;
+    private Button btn_close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,20 @@ public class OrderActivity extends AppCompatActivity implements OrderIActivity.O
     @Override
     protected void onStart() {
         super.onStart();
-
+        btn_close = findViewById(R.id.btn_close);
         rvOrder = findViewById(R.id.rv_order);
         actionRecyclerView();
+        actionButton();
+    }
+
+    private void actionButton() {
+
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void actionRecyclerView() {

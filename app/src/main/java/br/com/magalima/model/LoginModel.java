@@ -1,10 +1,11 @@
 package br.com.magalima.model;
 
+
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 
 import br.com.magalima.domain.Login;
-
 import br.com.magalima.network.JsonHttpRequestLogin;
 import br.com.magalima.presenter.LoginIPresenter;
 import br.com.magalima.presenter.LoginPresenter;
@@ -15,10 +16,9 @@ public class LoginModel implements LoginIModel.LoginModelImpl {
     private LoginIPresenter.LoginPresenterImpl presenter;
 
 
-    public LoginModel(LoginPresenter presenter ){
+    public LoginModel(LoginPresenter presenter) {
         this.presenter = presenter;
     }
-
 
 
     @Override
@@ -27,11 +27,14 @@ public class LoginModel implements LoginIModel.LoginModelImpl {
         requestParams.put(Login.ID_USERNAME, userName );
         requestParams.put( Login.ID_PASSWORD, password );
 
+
+        //   asyncHttpClient.get(JsonHttpRequestLogin.URI,requestParams,new JsonHttpRequestLogin(presenter));
         asyncHttpClient.get( presenter.getContext(),
                 JsonHttpRequestLogin.URI,
                 requestParams,
                 new JsonHttpRequestLogin( presenter ));
     }
+
 
 
 }
