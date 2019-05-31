@@ -1,12 +1,8 @@
 package br.com.magalima.presenter;
 
 import android.content.Context;
-import android.os.Bundle;
-
-import java.util.ArrayList;
 
 import br.com.magalima.domain.Login;
-import br.com.magalima.domain.Moto;
 import br.com.magalima.view.LoginIActivity;
 
 
@@ -22,7 +18,7 @@ public interface LoginIPresenter {
         public void setLogin( Login login);
         public void sendLogin(String userName, String password);
         public boolean valideFields();
-        //public void validateLogin( Login login);
+
     }
 
 

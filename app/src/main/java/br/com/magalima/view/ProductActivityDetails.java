@@ -2,7 +2,7 @@ package br.com.magalima.view;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -79,7 +79,7 @@ public class ProductActivityDetails extends Dialog implements
                 lstProd.add(product);
                 order.setProducts(lstProd);
                 daoOrder.insertOrder(order);
-                lstOrder= daoOrder.getOrders(login.getId());
+
                 productActivity.showToast("Produto adicionado no carinho ");
                 dismiss();
                 break;

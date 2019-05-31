@@ -1,18 +1,13 @@
 package br.com.magalima.presenter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
 
 import br.com.magalima.domain.Login;
-import br.com.magalima.domain.Moto;
-import br.com.magalima.model.LoginIModel;
 import br.com.magalima.model.LoginModel;
-import br.com.magalima.model.ProductModel;
-import br.com.magalima.mvp.MVP;
-import br.com.magalima.mvp.Model;
+
 import br.com.magalima.view.LoginIActivity;
 
 
@@ -20,7 +15,7 @@ public class LoginPresenter implements LoginIPresenter.LoginPresenterImpl {
 
     private LoginModel model;
     private LoginIActivity.LoginViewImpl view;
-    private ArrayList<Login> logins = new ArrayList<>();
+
 
     public LoginPresenter(){
         model = new LoginModel(this);

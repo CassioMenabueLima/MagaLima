@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/colorAccent"
+    android:background="@android:color/darker_gray"
     android:padding="2dp">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_width="75dp"
         android:layout_height="78dp"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_product_exemple" />
+        android:src="@drawable/ic_product_no_image" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,12 +5,11 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-import br.com.magalima.R;
 
 
 public class Order implements Parcelable {
     public static final String ID_KEY = "id";
-    public static final String EH_FAVORITO_KEY = "eh-favorito";
+
 
     private int id;
     private Login login;
@@ -41,20 +40,8 @@ public class Order implements Parcelable {
         this.products = products;
     }
 
-    public boolean isEhFavorito() {
-        return ehFavorito;
-    }
 
-    public void setEhFavorito(boolean ehFavorito) {
-        this.ehFavorito = ehFavorito;
-    }
 
-    public int getEhFavoritoIcone(){
-        if( isEhFavorito() ){
-            return R.drawable.ic_arrow_r;
-        }
-        return R.drawable.ic_launcher_background;
-    }
 
 
     @Override

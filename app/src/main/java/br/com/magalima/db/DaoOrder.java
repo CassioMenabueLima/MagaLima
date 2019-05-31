@@ -10,9 +10,6 @@ import br.com.magalima.domain.Order;
 import br.com.magalima.domain.Product;
 
 
-/**
- * Created by nalmir on 18/03/2017.
- */
 public class DaoOrder extends Dao {
 
 
@@ -23,14 +20,14 @@ public class DaoOrder extends Dao {
     public void insertOrder(Order order) {
         openDB();
           ContentValues cv = new ContentValues();
-        // cv.put("id", null);
+
         cv.put("id_user", order.getLogin().getId());
         cv.put("name", order.getLogin().getName());
         cv.put("email", order.getLogin().getEmail());
         db.insert("order_header", null, cv);
         closeDB();
         if(order.getProducts() != null){
-            //Insert Iten in order
+
             int idOrder =getIdCurrentOrder();
             insertOrderItens(order.getProducts(), idOrder);
         }
@@ -156,7 +153,7 @@ public class DaoOrder extends Dao {
         return dados;
     }
 
-    public ArrayList<Product> getOrdersItens(int idOrder) {
+    public ArrayList<Product> getOrdersItens(int id) {
         ArrayList<Product> dados = new ArrayList<>();
         //
         openDB();
@@ -165,14 +162,9 @@ public class DaoOrder extends Dao {
         //
         try {
             StringBuilder sb = new StringBuilder();
-            sb
-                    .append(" select * from order_itens where ")
-                    .append("id_order")
-                    .append(" = ? ");
+            sb     .append(" select * from order_itens  ");
 
-            String[] argumentos = {String.valueOf(idOrder)};
-
-            cursor = db.rawQuery(sb.toString().toLowerCase(), argumentos);
+            cursor = db.rawQuery(sb.toString().toLowerCase(), null);
             while (cursor.moveToNext()) {
                 Product pAux = new Product();
                 pAux.setDescricao(cursor.getString(cursor.getColumnIndex("description")));
@@ -198,11 +190,9 @@ public class DaoOrder extends Dao {
     }
     public void clearAllOrder() {
         openDB();
-        //
 
         String where =   " 1= 1";
-        // String[] argumentos = {chave};
-        //
+
         db.delete("order_header", where, null);
         db.delete("order_itens", where, null);
         closeDB();

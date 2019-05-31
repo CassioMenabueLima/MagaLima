@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import br.com.magalima.R;
@@ -72,20 +70,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     .into(iv_product);*/
             tv_nome.setText( product.getDescricao() );
             tv_valor.setText(String.valueOf(product.getValor()) );
-            iv_favourite.setImageResource( product.getEhFavoritoIcone() );
+
             btn_details.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                  //  activity.showToast(products.get(getAdapterPosition()).getInformacoes());
-                    activity.nextActivity(products.get(getAdapterPosition()));
+                   activity.nextActivityProductDetails(products.get(getAdapterPosition()));
                 }
             });
         }
 
         @Override
         public void onClick(View view) {
-            activity.updateEhFavoritoMoto(products.get( getAdapterPosition() ));
+
 
         }
     }

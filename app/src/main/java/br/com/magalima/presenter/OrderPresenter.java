@@ -5,9 +5,11 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-import br.com.magalima.domain.Order;
+
+import br.com.magalima.domain.Product;
 import br.com.magalima.model.OrderModel;
-import br.com.magalima.mvp.MVP;
+
+import br.com.magalima.view.OrderActivity;
 import br.com.magalima.view.OrderIActivity;
 
 
@@ -15,14 +17,14 @@ public class OrderPresenter implements OrderIPresenter.OrderPresenterImpl {
 
     private OrderModel model;
     private OrderIActivity.OrderViewImpl view;
-    private ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<Product> orders = new ArrayList<>();
 
-    public OrderPresenter(){
+    public OrderPresenter() {
         model = new OrderModel(this);
     }
 
     @Override
-    public void setView( OrderIActivity.OrderViewImpl view ){
+    public void setView(OrderIActivity.OrderViewImpl view) {
         this.view = view;
     }
 
@@ -32,25 +34,16 @@ public class OrderPresenter implements OrderIPresenter.OrderPresenterImpl {
     }
 
     @Override
-    public void updateListaRecycler(ArrayList<Order> m) {
+    public void updateListaRecycler(ArrayList<Product> m) {
         orders.clear();
-        orders.addAll( m );
+        orders.addAll(m);
         view.updateListaRecycler();
     }
 
-    @Override
-    public void updateItemRecycler(Order m) {
-        for(int i = 0; i < orders.size(); i++ ){
-            if( orders.get(i).getId() == m.getId() ){
-                orders.get(i).setEhFavorito( m.isEhFavorito() );
-                view.updateItemRecycler( i );
-                break;
-            }
-        }
-    }
 
     @Override
-    public ArrayList<Order> getOrder() {
+    public ArrayList<Product> getOrder() {
+
         return orders;
     }
 
@@ -69,5 +62,13 @@ public class OrderPresenter implements OrderIPresenter.OrderPresenterImpl {
 
     }
 
+    @Override
+    public void retrieveOrder(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            orders = savedInstanceState.getParcelableArrayList(OrderActivity.KEY);
 
+            return;
+        }
+        model.getOrders();
+    }
 }

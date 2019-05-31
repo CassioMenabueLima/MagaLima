@@ -1,12 +1,6 @@
 package br.com.magalima.view;
 
-import android.content.Context;
-import android.os.Bundle;
-
-import java.util.ArrayList;
-
 import br.com.magalima.domain.Login;
-import br.com.magalima.domain.Moto;
 
 
 public interface LoginIActivity {

@@ -8,11 +8,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
 
 import br.com.magalima.R;
-import br.com.magalima.adapter.MotosAdapter;
 import br.com.magalima.adapter.OrderAdapter;
-import br.com.magalima.domain.Moto;
-import br.com.magalima.mvp.MVP;
-import br.com.magalima.mvp.Presenter;
+import br.com.magalima.domain.Login;
+
 import br.com.magalima.presenter.OrderIPresenter;
 import br.com.magalima.presenter.OrderPresenter;
 
@@ -23,14 +21,16 @@ public class OrderActivity extends AppCompatActivity implements OrderIActivity.O
     private OrderAdapter adapter;
     private static OrderIPresenter.OrderPresenterImpl presenter;
     private String ID_USER;
+    private RecyclerView rvOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.order_activity);
 
         Intent it = getIntent();
-        ID_USER = it.getStringExtra("id");
+        Login login = it.getParcelableExtra("login");
+        ID_USER = login.getId();
 
         if (presenter == null) {
             presenter = new OrderPresenter();
@@ -43,13 +43,17 @@ public class OrderActivity extends AppCompatActivity implements OrderIActivity.O
     protected void onStart() {
         super.onStart();
 
-        RecyclerView rvOrder = findViewById(R.id.rv_order);
+        rvOrder = findViewById(R.id.rv_order);
+        actionRecyclerView();
+    }
+
+    private void actionRecyclerView() {
         rvOrder.setHasFixedSize(true);
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
         rvOrder.setLayoutManager(layoutManager);
-
-        //adapter = new MotosAdapter( this, presenter.getMotos() );
+        presenter.retrieveOrder(null);
+        adapter = new OrderAdapter(this, presenter.getOrder());
         rvOrder.setAdapter(adapter);
     }
 
@@ -57,14 +61,17 @@ public class OrderActivity extends AppCompatActivity implements OrderIActivity.O
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList(KEY, presenter.getOrder());
         super.onSaveInstanceState(outState);
+        presenter.retrieveOrder(outState);
     }
 
 
     public void updateListaRecycler() {
+        adapter = new OrderAdapter(this, presenter.getOrder());
         adapter.notifyDataSetChanged();
     }
 
     public void updateItemRecycler(int posicao) {
+
         adapter.notifyItemChanged(posicao);
     }
 

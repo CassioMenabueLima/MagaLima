@@ -34,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     "  [ID_PRODUCT] TEXT , " +
                     "  [DESCRIPTION] TEXT ,  " +
                     "  [PRICE] REAL ,  " +
-                    "  [QUANTTY] REAL ,  " +
+                    "  [QUANTITY] REAL ,  " +
                     "  [TOTAL] REAL ,  " +
                     "  [INFO] TEXT  " +
                     "    );");
@@ -55,11 +55,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             StringBuilder sb = new StringBuilder();
             //
-            // Tabela Contato
+
             sb.append("DROP TABLE IF EXISTS [ORDER_HEADER] ;");
             sb.append("DROP TABLE IF EXISTS [ORDER_ITENS] ;");
-            // Tabel Ramo Atividade
-            //sb.append("");
 
             String[] comandos = sb.toString().split(";");
 

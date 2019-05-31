@@ -3,12 +3,10 @@ package br.com.magalima.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import br.com.magalima.R;
 
 
 public class Product implements Parcelable {
-    public static final String ID_KEY = "id";
-    public static final String EH_FAVORITO_KEY = "eh-favorito";
+
 
     private String id;
     private String descricao;
@@ -66,20 +64,9 @@ public class Product implements Parcelable {
         this.informacoes = informacoes;
     }
 
-    public boolean isEhFavorito() {
-        return ehFavorito;
-    }
 
-    public void setEhFavorito(boolean ehFavorito) {
-        this.ehFavorito = ehFavorito;
-    }
 
-    public int getEhFavoritoIcone(){
-        if( isEhFavorito() ){
-            return R.drawable.ic_arrow_r;
-        }
-        return R.drawable.ic_launcher_background;
-    }
+
 
 
     @Override

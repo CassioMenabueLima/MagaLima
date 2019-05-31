@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-import br.com.magalima.domain.Moto;
+import br.com.magalima.domain.Login;
 import br.com.magalima.domain.Product;
 import br.com.magalima.view.ProductIActivity;
 
@@ -20,8 +20,9 @@ public interface ProductIPresenter {
         public void setView(ProductIActivity.ProductViewImpl view);
         public Context getContext();
         public void updateListaRecycler(ArrayList<Product> product);
-        public void updateItemRecycler(Product product);
+
         public ArrayList<Product> getProduct();
+        public void nextActivityOrder(Login login);
     }
 
 

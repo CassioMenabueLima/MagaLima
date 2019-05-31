@@ -9,10 +9,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import br.com.magalima.domain.Login;
-import br.com.magalima.domain.Moto;
 import br.com.magalima.domain.Product;
-import br.com.magalima.presenter.LoginIPresenter;
 import br.com.magalima.presenter.ProductIPresenter;
 import cz.msebera.android.httpclient.Header;
 
@@ -61,7 +58,7 @@ public class JsonHttpRequestProduct extends JsonHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
         presenter.showToast( responseString );
-       // presenter.setLogin(null);
+
 
     }
 

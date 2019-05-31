@@ -1,11 +1,6 @@
 package br.com.magalima.view;
 
-import android.content.Context;
-import android.os.Bundle;
-
-import java.util.ArrayList;
-
-import br.com.magalima.domain.Moto;
+import br.com.magalima.domain.Login;
 import br.com.magalima.domain.Product;
 
 
@@ -17,11 +12,9 @@ public interface ProductIActivity {
         public void showToast(String mensagem);
         public void showProgressBar(int visibilidade);
         public void updateListaRecycler();
-        public void updateItemRecycler(int posicao);
-        public void updateItemToCar(int posicao);
-        public void removeItemToCar(int posicao);
-        public void selectedItemOnCar(int posicao);
-        public void nextActivity(Product product);
+      
+        public void nextActivityProductDetails(Product product);
+        public void nextActivityOrder(Login product);
     }
 
 }

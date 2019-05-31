@@ -7,8 +7,8 @@ import br.com.magalima.R;
 
 
 public class Login implements Parcelable {
-    public static final String ID_KEY = "id";
-    public static final String EH_FAVORITO_KEY = "eh-favorito";
+    public static final String ID_USERNAME = "username";
+    public static final String ID_PASSWORD = "password";
 
     private String id;
     private String userName;

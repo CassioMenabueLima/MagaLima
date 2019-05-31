@@ -16,17 +16,7 @@ public class Dao {
     }
 
     //
- public void openDB(StringBuilder sb) {
-        DataBaseHelper baseHelper = new DataBaseHelper(
-                context,
-                Constantes.BANCODEDADOS,
-                null,
-                Constantes.VERSAO_BANCO,sb
-        );
 
-        this.db = baseHelper.getWritableDatabase();
-
-    }
     public void openDB() {
         StringBuilder sb = new StringBuilder();
         DataBaseHelper baseHelper = new DataBaseHelper(

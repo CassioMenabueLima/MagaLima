@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import br.com.magalima.R;
@@ -23,6 +25,8 @@ public class ProductActivity extends AppCompatActivity implements ProductIActivi
     private ProductAdapter adapter;
     private static ProductIPresenter.ProductPresenterImpl presenter;
     private Login login;
+    private RecyclerView rvProducts;
+    private Button btn_comanda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +46,12 @@ public class ProductActivity extends AppCompatActivity implements ProductIActivi
     @Override
     protected void onStart() {
         super.onStart();
+        btn_comanda = findViewById(R.id.btn_comanda);
+        actionButton();
+        actionRecyclerView();
 
-        RecyclerView rvProducts = findViewById(R.id.rv_produtos);
-        rvProducts.setHasFixedSize(true);
-
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
-        rvProducts.setLayoutManager(layoutManager);
-        presenter.retrieveProduct(null);
-        adapter = new ProductAdapter(this, presenter.getProduct());
-        rvProducts.setAdapter(adapter);
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -73,27 +73,21 @@ public class ProductActivity extends AppCompatActivity implements ProductIActivi
         adapter.notifyItemChanged(posicao);
     }
 
-    @Override
-    public void updateItemToCar(int posicao) {
-
-    }
 
     @Override
-    public void removeItemToCar(int posicao) {
-
-    }
-
-    @Override
-    public void selectedItemOnCar(int posicao) {
-
-    }
-
-    @Override
-    public void nextActivity(Product product) {
+    public void nextActivityProductDetails(Product product) {
 
         ProductActivityDetails productActivityDetails = new ProductActivityDetails(ProductActivity.this, login, product);
         productActivityDetails.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         productActivityDetails.show();
+    }
+
+    @Override
+    public void nextActivityOrder(Login order) {
+        Intent it = new Intent(this, OrderActivity.class);
+        //it.putExtra("id", login.getId());
+        it.putExtra("login", login);
+        startActivity(it);
     }
 
     public void showToast(String mensagem) {
@@ -103,4 +97,25 @@ public class ProductActivity extends AppCompatActivity implements ProductIActivi
     public void showProgressBar(int visibilidade) {
         findViewById(R.id.pb_loading).setVisibility(visibilidade);
     }
+
+    public void actionButton() {
+        btn_comanda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.nextActivityOrder(login);
+            }
+        });
+    }
+
+    private void actionRecyclerView() {
+        rvProducts = findViewById(R.id.rv_produtos);
+        rvProducts.setHasFixedSize(true);
+
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
+        rvProducts.setLayoutManager(layoutManager);
+        presenter.retrieveProduct(null);
+        adapter = new ProductAdapter(this, presenter.getProduct());
+        rvProducts.setAdapter(adapter);
+    }
+
 }

@@ -6,11 +6,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import br.com.magalima.domain.Moto;
+import br.com.magalima.domain.Login;
 import br.com.magalima.domain.Product;
 import br.com.magalima.model.ProductIModel;
 import br.com.magalima.model.ProductModel;
-import br.com.magalima.mvp.MVP;
+
 import br.com.magalima.view.ProductActivity;
 import br.com.magalima.view.ProductIActivity;
 
@@ -71,21 +71,13 @@ public class ProductPresenter implements ProductIPresenter.ProductPresenterImpl 
         view.updateListaRecycler();
     }
 
-
-    @Override
-    public void updateItemRecycler(Product prod) {
-        for(int i = 0; i < products.size(); i++ ){
-            if( products.get(i).getId() == prod.getId() ){
-                products.get(i).setEhFavorito( prod.isEhFavorito() );
-                view.updateItemRecycler( i );
-                break;
-            }
-        }
-    }
-
     @Override
     public ArrayList<Product> getProduct() {
         return products;
+    }
+    @Override
+    public void nextActivityOrder(Login login) {
+        view.nextActivityOrder(login);
     }
 
 
