@@ -11,12 +11,13 @@ import java.util.ArrayList;
 
 import br.com.magalima.domain.Product;
 import br.com.magalima.presenter.ProductIPresenter;
+import br.com.magalima.util.Constantes;
 import cz.msebera.android.httpclient.Header;
 
 
 public class JsonHttpRequestProduct extends JsonHttpResponseHandler {
-    public static final String URI = "http://192.168.0.2:8081/produto/produtos.php";
-    public static final String METODO_KEY = "metodo";
+    public static final String URI = Constantes.IP_API+Product.ID_METODO;
+
 
     private ProductIPresenter.ProductPresenterImpl presenter;
 

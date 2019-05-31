@@ -10,11 +10,12 @@ import org.json.JSONObject;
 import br.com.magalima.domain.Login;
 
 import br.com.magalima.presenter.LoginIPresenter;
+import br.com.magalima.util.Constantes;
 import cz.msebera.android.httpclient.Header;
 
 
 public class JsonHttpRequestLogin extends JsonHttpResponseHandler {
-    public static final String URI = "http://192.168.0.2:8081/produto/usuarios.php";
+    public static final String URI = Constantes.IP_API+Login.ID_METODO;
 
 
     private LoginIPresenter.LoginPresenterImpl presenter;
@@ -77,18 +78,6 @@ public class JsonHttpRequestLogin extends JsonHttpResponseHandler {
         super.onSuccess(statusCode, headers, responseString);
     }
 
-    @Override
-    protected Object parseResponse(byte[] responseBody) throws JSONException {
-        return super.parseResponse(responseBody);
-    }
 
-    @Override
-    public boolean isUseRFC5179CompatibilityMode() {
-        return super.isUseRFC5179CompatibilityMode();
-    }
 
-    @Override
-    public void setUseRFC5179CompatibilityMode(boolean useRFC5179CompatibilityMode) {
-        super.setUseRFC5179CompatibilityMode(useRFC5179CompatibilityMode);
-    }
 }
